@@ -1,0 +1,25 @@
+
+
+create breif 
+
+TeacherController
+→ getSprintsByClass()
+→ showCreateBriefForm()
+→ storeBrief()
+
+
+submit breif 
+
+StudentController
+→ viewBrief()
+→ submitBrief()
+→ Submission::create()
+
+
+correct & evaluate 
+
+TeacherController
+→ selectBrief()
+→ selectStudent()
+→ getCompetencesBySprint()
+→ saveEvaluations()
