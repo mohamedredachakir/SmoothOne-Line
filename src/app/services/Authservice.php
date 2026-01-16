@@ -16,6 +16,7 @@ class Authservice {
         }
 
         if (!password_verify($password, $user['password'])) {
+            header('Location: /login');
             return false;
         }
 

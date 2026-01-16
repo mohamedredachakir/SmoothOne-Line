@@ -1,49 +1,51 @@
--- USERS (password = same as email, hashed)
-INSERT INTO users (name,email,password,role) VALUES
-('Admin User','admin@mailinator.com', '$2y$10$tr0pzYK6hXg0Dqp0jq0tAuVv7JbgAZeHa1oHk8XGx6jv3pIu3DPyW', 'ADMIN'),
-('Teacher One','teacher@mailinator.com','$2y$10$T5.QtY0TtVrO9V0F3U2HLOl2iP1HtGxwzS6YlQl/jCz5M./VfG3PS','TEACHER'),
-('Student One','student@mailinator.com','$2y$10$kG1qXrF2t9DZ4b1gYh5IzuuHxd0u7HbYlMvTzE1c9gH5qP4/8RtR6','STUDENT');
+--  USERS
+-- USERS (password = email, hashed)
+INSERT INTO users (id,name,email,password,role) VALUES
+(1,'Admin User','admin@mailinator.com','$2y$10$D4m2R1wGQ5YFf6CkP3z9SeZCivQqQ/bjE5vYiyPo1gUEuTnI5Gfza','ADMIN'),
+(2,'Teacher One','teacher@mailinator.com','$2y$10$NdhbWlQ3t4lZRQmV8d3i7uZvP8Bf5dT0K1tVbzEtlZrFw6QP8dP9K','TEACHER'),
+(3,'Student One','student@mailinator.com','$2y$10$9hJ7E5tFv2K9LkD0M3gHkH8nB2mX7zQf6pR3CwG1yUqZx5A7vN6vG','STUDENT');
+
 
 -- CLASSES
-INSERT INTO classes (name) VALUES ('Class 1');
+INSERT INTO classes (id,name) VALUES (1,'Class 1');
 
--- STUDENTS
+--  STUDENTS
 INSERT INTO students (user_id,class_id) VALUES (3,1);
 
--- TEACHERS
+--  TEACHERS
 INSERT INTO teachers (user_id) VALUES (2);
 
--- CLASS_TEACHER
+--  CLASS_TEACHER
 INSERT INTO class_teacher (class_id, teacher_id) VALUES (1,2);
 
--- SPRINTS
-INSERT INTO sprints (name,duration,sprint_order) VALUES ('Sprint 1',10,1);
+--  SPRINTS
+INSERT INTO sprints (id,name,duration,sprint_order) VALUES (1,'Sprint 1',10,1);
 
--- CLASS_SPRINT
+--  CLASS_SPRINT
 INSERT INTO class_sprint (class_id,sprint_id) VALUES (1,1);
 
--- COMPETENCES
-INSERT INTO competences (code,label) VALUES
-('C1','Competence 1'),
-('C2','Competence 2'),
-('C3','Competence 3');
+--  COMPETENCES
+INSERT INTO competences (id,code,label) VALUES
+(1,'C1','Competence 1'),
+(2,'C2','Competence 2'),
+(3,'C3','Competence 3');
 
--- SPRINT_COMPETENCE
+--  SPRINT_COMPETENCE
 INSERT INTO sprint_competence (sprint_id,competence_id) VALUES
 (1,1),
 (1,2),
 (1,3);
 
--- BRIEFS
-INSERT INTO briefs (title,description,estimated_duration,type,sprint_id,class_id,teacher_id) VALUES
-('Brief 1','Description du brief',7,'INDIVIDUAL',1,1,2);
+--  BRIEFS
+INSERT INTO briefs (id,title,description,estimated_duration,type,sprint_id,class_id,teacher_id) VALUES
+(1,'Brief 1','Description du brief',7,'INDIVIDUAL',1,1,2);
 
--- SUBMISSIONS
-INSERT INTO submissions (student_id,brief_id,content) VALUES
-(3,1,'My submission content');
+--  SUBMISSIONS
+INSERT INTO submissions (id,student_id,brief_id,content) VALUES
+(1,3,1,'My submission content');
 
--- EVALUATIONS
-INSERT INTO evaluations (student_id,brief_id,competence_id,teacher_id,level,comment) VALUES
-(3,1,1,2,'IMITER','Good work'),
-(3,1,2,2,'S_ADAPTER','Needs improvement'),
-(3,1,3,2,'TRANSPOSER','Excellent');
+--  EVALUATIONS
+INSERT INTO evaluations (id,student_id,brief_id,competence_id,teacher_id,level,comment) VALUES
+(1,3,1,1,2,'IMITER','Good work'),
+(2,3,1,2,2,'S_ADAPTER','Needs improvement'),
+(3,3,1,3,2,'TRANSPOSER','Excellent');

@@ -15,9 +15,11 @@ class AuthController {
         $_POST['password'],
     );
     if ($succes) {
-        header('Location: /dashboard');
+        header('Location: /');
         exit();
-    }
+    }else {
+            echo "Login failed!";
+        }
 }
 
 }
