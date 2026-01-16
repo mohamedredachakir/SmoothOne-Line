@@ -1,0 +1,23 @@
+
+
+** auth 
+user enter email + pass 
+authcontroller -> authservice -> userrepository
+check role (admin/prof/student) -> login -> redirect
+blade template exposure dashboard after check roles
+
+** admin 
+
+services : 
+AdminService → CRUD Classes, Sprints, Competences, Users
+
+Repositories :
+ClassRepository, SprintRepository, CompetenceRepository, UserRepository
+
+blade :
+afiche classes, sprints,copetence,users
+
+
+admin create sprint link whit competence link whit class
+
+** prof 
