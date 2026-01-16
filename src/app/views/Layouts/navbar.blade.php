@@ -46,7 +46,6 @@
 
     .nav-link:hover { color: var(--primary-red); }
 
-   
     .nav-btn {
         padding: 10px 22px;
         border-radius: 4px;
@@ -86,12 +85,27 @@
         <a href="/" class="logo">Smooth<span>One-Line</span></a>
 
         <div class="nav-menu">
-            
             <?php if(isset($_SESSION['user'])): ?>
-                <a href="/briefs" class="nav-link">Briefs</a>
-                <a href="/promotions" class="nav-link">Promotions</a>
-                <a href="/dashboard" class="nav-btn btn-outline">Dashboard</a>
-                <a href="/profile" class="nav-btn btn-login">Mon Profil</a>
+                
+                <?php 
+                    $role = $_SESSION['user']['role']; 
+                ?>
+
+                <?php if($role === 'ADMIN'): ?>
+                    <a href="/briefs" class="nav-link">Briefs</a>
+                    <a href="/dashboard" class="nav-btn btn-outline">Dashboard</a>
+
+                <?php elseif($role === 'TEACHER'): ?>
+                    <a href="/classes" class="nav-link">Classes</a>
+                    <a href="/briefs" class="nav-link">Briefs</a>
+
+                <?php elseif($role === 'STUDENT'): ?>
+                    <a href="/promotions" class="nav-link">Promotions</a>
+                    <a href="/briefs" class="nav-link">Briefs</a>
+                <?php endif; ?>
+
+                <a href="/profile" class="nav-btn btn-login">Profil</a>
+
             <?php else: ?>
                 <a href="/login" class="nav-btn btn-login">Se Connecter</a>
             <?php endif; ?>
