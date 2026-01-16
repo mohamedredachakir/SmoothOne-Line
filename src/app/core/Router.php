@@ -20,12 +20,12 @@ class Router {
         $requestmethode = $_SERVER['REQUEST_METHOD'];
         if(isset($this->routes[$requestmethode][$url])){
             [$controllerName , $methodeName] = explode('@', $this->routes[$requestmethode][$url]);
-            $controllerClass = "App\\Controllers\\$controllerName";
+            $controllerClass = "App\\controllers\\$controllerName";
             $controller = new $controllerClass();
             $controller->$methodeName();
             return;
         }else{
-            $controllerClass = "App\\Controllers\\ErrorController";
+            $controllerClass = "App\\controllers\\ErrorController";
             $controller = new $controllerClass();
             $controller->notFound();
             return;

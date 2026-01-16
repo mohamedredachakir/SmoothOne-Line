@@ -5,7 +5,7 @@ require_once __DIR__ ."/../app/core/db.php";
 use App\core\Router;
 
 session_start();
-echo"test";
+
 
 $router = new Router();
 $router->get("/",'HomeController@index');
