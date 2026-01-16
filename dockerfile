@@ -17,6 +17,8 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' \
     /etc/apache2/apache2.conf
 
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
