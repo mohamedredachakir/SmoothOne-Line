@@ -1,10 +1,10 @@
 <?php
 
 class Database {
-    private static $host = "smouthone_app";
+    private static $host = "smouthone_db";
     private static $db_name = "smouthone";
     private static $user_name = "admin";
-    private static $password = "red123";
+    private static $password = "password";
     private static $conn = null;
     
     public static function getconnection(){

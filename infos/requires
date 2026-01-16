@@ -1,0 +1,8 @@
+<?php
+require_once __DIR__ . '/../Layouts/header.blade.php';
+require_once __DIR__ . '/../Layouts/navbar.blade.php';
+?>
+
+<?php
+require_once __DIR__ . '/../Layouts/footer.blade.php';
+?>
