@@ -37,5 +37,5 @@ $router->get('/login','Authcontroller@showlogin');
 $router->post('/login','Authcontroller@login');
 $router->get('/profile','Profilecontroller@index');
 $router->post('/logout','Authcontroller@logout');
-$router->get('/dashboard','Admincontroller@dashboard');
+$router->get('/admin', 'Admincontroller@dashboard');
 $router->dispatch();

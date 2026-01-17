@@ -20,4 +20,12 @@ class UserRepository {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ?: null;
     }
+
+        public function  countByRole(string $role): int {
+        $conn = Database::getconnection();
+        $stmt = $conn->prepare("SELECT COUNT(*) as total FROM users WHERE role = :role");
+        $stmt->execute([':role' => $role]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int) $result['total'];
+    }
 }

@@ -93,7 +93,7 @@
 
                 <?php if($role === 'ADMIN'): ?>
                     <a href="/briefs" class="nav-link">Briefs</a>
-                    <a href="/dashboard" class="nav-btn btn-outline">Dashboard</a>
+                    <a href="/admin" class="nav-btn btn-outline">Dashboard</a>
 
                 <?php elseif($role === 'TEACHER'): ?>
                     <a href="/classes" class="nav-link">Classes</a>
