@@ -2,6 +2,7 @@
 
 namespace App\repositories;
 
+use App\models\Sprint;
 use Database;
 use PDO;
 
@@ -29,11 +30,21 @@ class SprintRepository {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function find($id){
+     public function find($id){
         $conn = Database::getConnection();
-        $stmt = $conn->prepare("SELECT * FROM sprints WHERE id = :id");
-        $stmt->execute(["id" => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $conn->prepare("SELECT * FROM sprints WHERE id=:id");
+        $stmt->execute(['id' => $id]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(!$data) return null;
+
+        $sprint = new Sprint();
+        $sprint->id = $data['id'];
+        $sprint->name = $data['name'];
+        $sprint->duration = $data['duration'];
+        $sprint->sprint_order = $data['sprint_order']?? 0;
+
+        return $sprint;
     }
     public function create($name,$time){
         $conn = Database::getConnection();

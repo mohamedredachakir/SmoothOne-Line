@@ -2,6 +2,7 @@
 
 namespace App\repositories;
 
+use App\models\ClassModel;
 use Database;
 use PDO;
 
@@ -23,19 +24,36 @@ class ClassRepository {
         return $result ? (int) $result['total'] : 0;
     }
 
-    public function getAll() {
-        $conn = Database::getconnection();
-        $stmt = $conn->prepare("SELECT * FROM classes ORDER BY id DESC");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function getAll(): array {
+        $conn = Database::getConnection();
+        $stmt = $conn->query("SELECT * FROM classes ORDER BY id DESC");
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $classes = [];
+        foreach ($rows as $data) {
+            $class = new ClassModel();
+            $class->id = $data['id'];
+            $class->name = $data['name'];
+            $classes[] = $class;
+        }
+        return $classes;
     }
 
-    public function find($id) {
-        $conn = Database::getconnection();
-        $stmt = $conn->prepare("SELECT * FROM classes WHERE id = :id");
-        $stmt->execute(["id"=> $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+    public function find($id){
+       $conn = Database::getConnection();
+       $stmt = $conn->prepare("SELECT * FROM classes WHERE id=:id");
+       $stmt->execute(['id' => $id]);
+       $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+       if (!$data) return null;
+    
+       $class = new ClassModel();
+       $class->id = $data['id'];
+       $class->name = $data['name'];
+    
+        return $class;
+   }
+
 
     public function create($name){
         $conn = Database::getconnection();

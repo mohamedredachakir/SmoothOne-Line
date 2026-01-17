@@ -27,11 +27,12 @@ class AdminsprintController {
     public function edit(){
         Auth::role('ADMIN');
         $sprint = SprintRepository::getInstance()->find($_GET['id']);
+        //dd($sprint);
         require_once __DIR__ . '/../views/admin/sprints/edit.blade.php';
     }
     public function update() {
         Auth::role('ADMIN');
-        SprintRepository::getInstance()->update($_POST['id'],$_POST['name'],$_POST['time']);
+        SprintRepository::getInstance()->update($_POST['id'],$_POST['name'],$_POST['duration']);
         header('Location: /admin/sprints');
         exit();
     }

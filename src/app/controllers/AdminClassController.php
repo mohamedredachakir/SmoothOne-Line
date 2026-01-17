@@ -26,6 +26,7 @@ class AdminClassController {
     public function edit() {
         Auth::role('ADMIN');
         $class = ClassRepository::getInstance()->find($_GET['id']);
+       // dd($class);
         require_once __DIR__ .'/../views/admin/classes/edit.blade.php';
     }
     public function update() {
