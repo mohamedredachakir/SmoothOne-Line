@@ -35,4 +35,6 @@ $router = new Router();
 $router->get("/",'HomeController@index');
 $router->get('/login','Authcontroller@showlogin');
 $router->post('/login','Authcontroller@login');
+$router->get('/profile','Profilecontroller@index');
+$router->post('/logout','Authcontroller@logout');
 $router->dispatch();

@@ -10,16 +10,22 @@ class AuthController {
     }
     public function login() {
     $auth = new Authservice();
-    $succes = $auth->login(
+    $role = $auth->login(
         $_POST['email'],
         $_POST['password'],
     );
-    if ($succes) {
-        header('Location: /');
-        exit();
-    }else {
-            echo "Login failed!";
+    if (!$role) {
+    header('Location: /login');
+    exit;
+        }else {
+            header('Location: /profile');
         }
-}
+    }
+
+    public function logout() {
+        session_destroy();
+        header('Location: /login');
+        exit();
+    }
 
 }

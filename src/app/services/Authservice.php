@@ -15,12 +15,11 @@ class Authservice {
             return false;
         }
 
-        if (!password_verify($password, $user['password'])) {
-            header('Location: /login');
+        if (!password_verify($password, $user['password'])) { 
             return false;
         }
 
         $_SESSION['user'] = $user;
-        return true;
+        return $user['role'];
     }
 }

@@ -1,9 +1,9 @@
 --  USERS
 -- USERS (password = email, hashed)
 INSERT INTO users (id,name,email,password,role) VALUES
-(1,'Admin User','admin@mailinator.com','$2y$10$D4m2R1wGQ5YFf6CkP3z9SeZCivQqQ/bjE5vYiyPo1gUEuTnI5Gfza','ADMIN'),
-(2,'Teacher One','teacher@mailinator.com','$2y$10$NdhbWlQ3t4lZRQmV8d3i7uZvP8Bf5dT0K1tVbzEtlZrFw6QP8dP9K','TEACHER'),
-(3,'Student One','student@mailinator.com','$2y$10$9hJ7E5tFv2K9LkD0M3gHkH8nB2mX7zQf6pR3CwG1yUqZx5A7vN6vG','STUDENT');
+(1,'Admin User','admin@mailinator.com','$2a$12$ocOKUjKpWrEmfz3MA2fpL.YSwdFpEv6BaR0hvvg5zTqM8IfWRnw5C','ADMIN'),
+(2,'Teacher One','teacher@mailinator.com','$2a$12$D6RJt58RzMPCM16Achvz3.aMdP.oAi3JGtceet97D1NRioJbFZ3fC','TEACHER'),
+(3,'Student One','student@mailinator.com','$2a$12$qSAR3nLBnGJJiay6vB0PUOAvOcBG9dL/qiyQtZBfpiGwWgTNQJiMG','STUDENT');
 
 
 -- CLASSES
