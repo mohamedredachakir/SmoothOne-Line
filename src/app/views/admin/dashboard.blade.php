@@ -32,7 +32,6 @@ require_once __DIR__ . '/../Layouts/navbar.blade.php';
         margin-top: 5px;
     }
 
-    /* --- STATS GRID --- */
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
