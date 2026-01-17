@@ -9,7 +9,7 @@ class AdminClassController {
     public function index() {
         Auth::role("ADMIN");
         $classes = ClassRepository::getInstance()->getAll();
-        require_once __DIR__ ."/../views/admin/index.blade.php";
+        require_once __DIR__ ."/../views/admin/classes/index.blade.php";
     }
 
     public function create() {
@@ -25,7 +25,7 @@ class AdminClassController {
     }
     public function edit() {
         Auth::role('ADMIN');
-        ClassRepository::getInstance()->find($_GET['id']);
+        $class = ClassRepository::getInstance()->find($_GET['id']);
         require_once __DIR__ .'/../views/admin/classes/edit.blade.php';
     }
     public function update() {
@@ -36,7 +36,7 @@ class AdminClassController {
     }
     public function delete() {
         Auth::role('ADMIN');
-        ClassRepository::getInstance()->delete($_GET['id']);
+        ClassRepository::getInstance()->delete($_POST['id']);
         header('Location: /admin/classes');
         exit();
     }

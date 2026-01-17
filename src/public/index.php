@@ -44,5 +44,4 @@ $router->post('/admin/classes/store', 'AdminClassController@store');
 $router->get('/admin/classes/edit', 'AdminClassController@edit');
 $router->post('/admin/classes/update', 'AdminClassController@update');
 $router->post('/admin/classes/delete', 'AdminClassController@delete');
-
 $router->dispatch();

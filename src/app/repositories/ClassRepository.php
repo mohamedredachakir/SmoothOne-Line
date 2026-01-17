@@ -46,7 +46,7 @@ class ClassRepository {
     public function update($id, $name){
         $conn = Database::getconnection();
         $stmt = $conn->prepare("UPDATE classes SET name =:name WHERE id=:id");
-        return $stmt->execute(["id"=> $id]);
+        return $stmt->execute([':name' => $name,':id'=> $id]);
     }
     public function delete($id){
         $conn = Database::getconnection();
