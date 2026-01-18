@@ -28,7 +28,15 @@ class SprintRepository {
         $conn = Database::getConnection();
         $stmt = $conn->prepare("SELECT * FROM sprints ORDER BY id DESC");
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $rows =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sprints = [];
+        foreach ($rows as $row) {
+        $s = new Sprint();
+        $s->id = $row['id'];
+        $s->name = $row['name'];
+        $sprints[] = $s;
+           }
+        return $sprints;
     }
      public function find($id){
         $conn = Database::getConnection();

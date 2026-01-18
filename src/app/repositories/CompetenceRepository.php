@@ -30,10 +30,12 @@ public function getAll() {
 
     $competences = [];
     foreach ($result as $row) {
-        $c = new Competence();
-        $c->id = $row['id'];
-        $c->code = $row['code'];
-        $c->label = $row['label'];
+      $c = new Competence();
+$c->id = $row['id'];
+$c->code = $row['code'] ?? null;
+$c->label = $row['label'] ?? null;
+$c->sprint_id = $row['sprint_id'] ?? null;
+
         $competences[] = $c;
     }
     return $competences;
@@ -53,11 +55,20 @@ public function find($id) {
     return $c;
 }
 
-public function create($code, $label) {
+public function create($sprint_id, $code, $label) {
     $conn = Database::getConnection();
     $stmt = $conn->prepare("INSERT INTO competences (code, label) VALUES (:code, :label)");
     $stmt->execute(['code' => $code, 'label' => $label]);
+
+    $competenceId = $conn->lastInsertId();
+
+   
+    SprintCompetenceRepository::getInstance()->attach($sprint_id, $competenceId);
+
+    return $competenceId;
 }
+
+
 
 public function update($id, $code, $label) {
     $conn = Database::getConnection();
