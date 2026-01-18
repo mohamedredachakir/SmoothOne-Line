@@ -3,7 +3,8 @@ namespace App\Models;
 
 class Competence {
     public int $id;
-    public ?int $sprint_id = null;
     public string $code;
-    public ?string $label = null; 
+    public string $label;
+    public ?string $sprint_name = null;
 }
+

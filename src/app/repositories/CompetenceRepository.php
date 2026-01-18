@@ -25,21 +25,36 @@ class CompetenceRepository {
 
 public function getAll() {
     $conn = Database::getConnection();
-    $stmt = $conn->query("SELECT * FROM competences ORDER BY id DESC");
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $sql = "
+        SELECT 
+            c.id,
+            c.code,
+            c.label,
+            s.name AS sprint_name
+        FROM competences c
+        LEFT JOIN sprint_competence sc ON sc.competence_id = c.id
+        LEFT JOIN sprints s ON s.id = sc.sprint_id
+        ORDER BY c.id DESC
+    ";
+
+    $stmt = $conn->query($sql);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $competences = [];
-    foreach ($result as $row) {
-      $c = new Competence();
-$c->id = $row['id'];
-$c->code = $row['code'] ?? null;
-$c->label = $row['label'] ?? null;
-$c->sprint_id = $row['sprint_id'] ?? null;
 
+    foreach ($rows as $row) {
+        $c = new Competence();
+        $c->id = $row['id'];
+        $c->code = $row['code'];
+        $c->label = $row['label'];
+        $c->sprint_name = $row['sprint_name']; 
         $competences[] = $c;
     }
+
     return $competences;
 }
+
 
 public function find($id) {
     $conn = Database::getConnection();

@@ -56,4 +56,7 @@ $router->post('/admin/competences/store', 'AdminCompetenceController@store');
 $router->get('/admin/competences/edit', 'AdminCompetenceController@edit');
 $router->post('/admin/competences/update', 'AdminCompetenceController@update');
 $router->post('/admin/competences/delete', 'AdminCompetenceController@delete');
+$router->get('/teacher/briefs', 'TeacherBriefController@index');
+$router->get('/teacher/briefs/create', 'TeacherBriefController@create');
+$router->post('/teacher/briefs/store', 'TeacherBriefController@store');
 $router->dispatch();
