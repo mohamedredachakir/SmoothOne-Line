@@ -35,12 +35,16 @@ class BriefRepository {
     }
 
     public function create(array $data){
-        $stmt = Database::getconnection()->prepare('
-            INSERT INTO briefs (title, description, sprint_id, class_id, teacher_id, deadline)
-            VALUES (:title, :description, :sprint_id, :class_id, :teacher_id, :deadline)');
-            $stmt->execute($data);
-            return Database::getconnection()->lastInsertId();
-    }
+    $stmt = Database::getconnection()->prepare('
+        INSERT INTO briefs 
+        (title, description, estimated_duration, type, sprint_id, class_id, teacher_id)
+        VALUES 
+        (:title, :description, :estimated_duration, :type, :sprint_id, :class_id, :teacher_id)
+    ');
+    $stmt->execute($data);
+    return Database::getconnection()->lastInsertId();
+}
+
 
 
 }

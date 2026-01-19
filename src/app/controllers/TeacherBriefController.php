@@ -26,15 +26,19 @@ class TeacherBriefController {
     public function store(){
         Auth::role("TEACHER");
 
-        BriefRepository::getInstance()->create([
-            'title' => $_POST['title'],
-            'description' => $_POST['description'],
-            'estimated_duration' => $_POST['estimated_duration'],
-            'type' => $_POST['type'],
-            'sprint_id' => $_POST['sprint_id'],
-            'class_id' => $_POST['class_id'],
-            'teacher_id' => Auth::check()->id
-        ]);
+$data = [
+    'title' => $_POST['title'],
+    'description' => $_POST['description'],
+    'estimated_duration' => (int) $_POST['estimated_duration'],
+    'type' => $_POST['type'], 
+    'sprint_id' => (int) $_POST['sprint_id'],
+    'class_id' => (int) $_POST['class_id'],
+    'teacher_id' => (int) Auth::check()->id,
+];
+
+BriefRepository::getInstance()->create($data);
+
+
 
         header('Location: /teacher/briefs');
         exit;

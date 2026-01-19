@@ -9,6 +9,7 @@ class Auth {
             header('Location: /login');
             exit();
         };
+        return (object) $_SESSION['user'];
     }
 
     public static function role($role) {

@@ -97,7 +97,7 @@
 
                 <?php elseif($role === 'TEACHER'): ?>
                     <a href="/classes" class="nav-link">Classes</a>
-                    <a href="/briefs" class="nav-link">Briefs</a>
+                    <a href="/teacher/briefs" class="nav-link">Briefs</a>
 
                 <?php elseif($role === 'STUDENT'): ?>
                     <a href="/promotions" class="nav-link">Promotions</a>
