@@ -6,6 +6,7 @@ use App\core\helpers\Auth;
 use App\repositories\BriefRepository;
 use App\repositories\ClassRepository;
 use App\repositories\SprintRepository;
+use App\services\BriefService;
 
 
 class TeacherBriefController {
@@ -23,24 +24,26 @@ class TeacherBriefController {
         require_once __DIR__ ."/../views/teacher/create.blade.php";
     }
     
-    public function store(){
-        Auth::role("TEACHER");
+    public function store()
+    {
+        Auth::role('TEACHER');
 
-$data = [
-    'title' => $_POST['title'],
-    'description' => $_POST['description'],
-    'estimated_duration' => (int) $_POST['estimated_duration'],
-    'type' => $_POST['type'], 
-    'sprint_id' => (int) $_POST['sprint_id'],
-    'class_id' => (int) $_POST['class_id'],
-    'teacher_id' => (int) Auth::check()->id,
-];
+        $service = new BriefService(
+            new BriefRepository(),
+            new SprintRepository()
+        );
 
-BriefRepository::getInstance()->create($data);
+        $user = Auth::check();
 
+        if(!$user){
+            throw new \Exception('not login!!!');
+        }
+        $teacherId = $user->id;
 
+        $service->create($_POST, $teacherId);
 
         header('Location: /teacher/briefs');
         exit;
     }
+
 }

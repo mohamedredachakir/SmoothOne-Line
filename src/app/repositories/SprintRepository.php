@@ -69,4 +69,14 @@ class SprintRepository {
         $stmt = $conn->prepare("DELETE FROM sprints WHERE id=:id");
         $stmt->execute(["id"=> $id]);
     }
+
+        public function exists(int $id): bool
+    {
+        $conn = Database::getConnection();
+        $stmt = $conn->prepare("SELECT 1 FROM sprints WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+
+        return (bool) $stmt->fetchColumn();
+    }
+
 }

@@ -34,16 +34,27 @@ class BriefRepository {
     return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function create(array $data){
-    $stmt = Database::getconnection()->prepare('
-        INSERT INTO briefs 
-        (title, description, estimated_duration, type, sprint_id, class_id, teacher_id)
-        VALUES 
-        (:title, :description, :estimated_duration, :type, :sprint_id, :class_id, :teacher_id)
-    ');
-    $stmt->execute($data);
-    return Database::getconnection()->lastInsertId();
-}
+   public function create(Brief $brief): int
+    {
+        $stmt = Database::getConnection()->prepare("
+            INSERT INTO briefs 
+            (title, description, estimated_duration, type, sprint_id, class_id, teacher_id)
+            VALUES 
+            (:title, :description, :estimated_duration, :type, :sprint_id, :class_id, :teacher_id)
+        ");
+
+        $stmt->execute([
+            'title' => $brief->title,
+            'description' => $brief->description,
+            'estimated_duration' => $brief->estimatedDuration,
+            'type' => $brief->type,
+            'sprint_id' => $brief->sprintId,
+            'class_id' => $brief->classId,
+            'teacher_id' => $brief->teacherId
+        ]);
+
+        return Database::getConnection()->lastInsertId();
+    }
 
 
 
