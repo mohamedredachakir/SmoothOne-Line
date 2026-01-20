@@ -39,4 +39,12 @@ class SprintCompetenceRepository {
         $stmt->execute(['competence_id' => $competence_id]);
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function detachByCompetence(int $competenceId): void{
+        $stmt = Database::getConnection()->prepare(
+            "DELETE FROM sprint_competence WHERE competence_id = :id"
+        );
+        $stmt->execute(['id' => $competenceId]);
+    }
+
 }
