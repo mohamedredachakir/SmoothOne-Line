@@ -30,12 +30,16 @@ class SprintRepository {
         $stmt->execute();
         $rows =  $stmt->fetchAll(PDO::FETCH_ASSOC);
             $sprints = [];
-        foreach ($rows as $row) {
-        $s = new Sprint();
-        $s->id = $row['id'];
-        $s->name = $row['name'];
-        $sprints[] = $s;
-           }
+      foreach ($rows as $row) {
+    $s = new Sprint(
+        $row['id'],
+        $row['name'],
+        $row['duration'],
+        $row['sprint_order'] ?? 0
+    );
+    $sprints[] = $s;
+}
+
         return $sprints;
     }
      public function find($id){

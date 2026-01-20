@@ -2,9 +2,9 @@
 
 namespace App\services;
 
-use App\Models\Competence;
 use App\repositories\CompetenceRepository;
 use App\repositories\SprintCompetenceRepository;
+use App\models\Competence;
 
 class CompetenceService
 {
