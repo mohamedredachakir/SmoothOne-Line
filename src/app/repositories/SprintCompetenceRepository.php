@@ -47,4 +47,11 @@ class SprintCompetenceRepository {
         $stmt->execute(['id' => $competenceId]);
     }
 
+    public function detachAllBySprint(int $sprintId): void{
+        $stmt = Database::getConnection()->prepare(
+            "DELETE FROM sprint_competence WHERE sprint_id = :id"
+        );
+        $stmt->execute(['id' => $sprintId]);
+    }
+
 }

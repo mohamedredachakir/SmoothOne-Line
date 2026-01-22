@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../Layouts/header.blade.php';
 require_once __DIR__ . '/../../Layouts/navbar.blade.php';
 ?>
+
 <h1>All Sprints</h1>
 
 <a href="/admin/sprints/create">➕ Add Sprint</a>
@@ -16,14 +17,14 @@ require_once __DIR__ . '/../../Layouts/navbar.blade.php';
 
     <?php foreach ($sprints as $sprint): ?>
         <tr>
-            <td><?= $sprint['id'] ?></td>
-            <td><?= $sprint['name'] ?></td>
-            <td><?= $sprint['duration'] ?></td>
+            <td><?= $sprint->id ?></td>
+            <td><?= $sprint->name ?></td>
+            <td><?= $sprint->duration ?></td>
             <td>
-                <a href="/admin/sprints/edit?id=<?= $sprint['id'] ?>">✏ Edit</a>
+                <a href="/admin/sprints/edit?id=<?= $sprint->id ?>">✏ Edit</a>
 
                 <form action="/admin/sprints/delete" method="POST" style="display:inline">
-                    <input type="hidden" name="id" value="<?= $sprint['id'] ?>">
+                    <input type="hidden" name="id" value="<?= $sprint->id ?>">
                     <button type="submit">🗑 Delete</button>
                 </form>
             </td>
@@ -31,6 +32,7 @@ require_once __DIR__ . '/../../Layouts/navbar.blade.php';
     <?php endforeach; ?>
 
 </table>
+
 <?php
 require_once __DIR__ . '/../../Layouts/footer.blade.php';
 ?>

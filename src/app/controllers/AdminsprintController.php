@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\core\helpers\Auth;
 use App\repositories\SprintRepository;
+use App\repositories\SprintCompetenceRepository;
+use App\services\SprintService;
 
 
 class AdminsprintController {
@@ -36,11 +38,17 @@ class AdminsprintController {
         header('Location: /admin/sprints');
         exit();
     }
-    public function delete() {
+    public function delete(){
         Auth::role('ADMIN');
-        SprintRepository::getInstance()->delete($_POST['id']);
+        $service = new SprintService(
+            SprintRepository::getInstance(),
+            SprintCompetenceRepository::getInstance()
+        );
+
+        $service->delete((int) $_POST['id']);
         header('Location: /admin/sprints');
         exit();
     }
+
 }
 
