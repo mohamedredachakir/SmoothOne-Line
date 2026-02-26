@@ -1,0 +1,6 @@
+
+docker compose exec db psql -U admin -d smouthone
+
+\l
+\c smouthone
+\dt
